@@ -58,8 +58,8 @@ public class User {
 	}
 	
 	
-    	public User(String username, String password, String firstName, String lastName, String mobileNumber) {
-		super();
+    public User(String username, String password, String firstName, String lastName, String mobileNumber) {
+    	super();
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -67,4 +67,7 @@ public class User {
 		this.mobileNumber = mobileNumber;
 	}
 
+    public String toString() {
+    	return username + "," + password + ", " + firstName + ", " + lastName + ", " + mobileNumber;
+    }
 }
