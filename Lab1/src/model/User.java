@@ -68,6 +68,7 @@ public class User {
 	}
 
     public String toString() {
-    	return username + "," + password + ", " + firstName + ", " + lastName + ", " + mobileNumber;
+    	return "Username: " + username + ", Password: " + password + ", First Name: " + firstName + ", Last Name: " + lastName + ", Mobile Number: " + mobileNumber;
     }
+    
 }
