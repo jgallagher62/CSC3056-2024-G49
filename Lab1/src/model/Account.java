@@ -1,6 +1,8 @@
 package model;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
+
 
 public class Account {
 	String accountNumber;
@@ -49,7 +51,10 @@ public class Account {
 		this.accountOpeningDate = accountOpeningDate;
 	}
 	
-	
+	public String toString() {
+	    return "Account Number: " + accountNumber + ", Username: " + usernameOfAccountHolder + ", Account Type: " + accountType + ", Opening Date: " + accountOpeningDate;
+	}
+
 	
 	
 }
