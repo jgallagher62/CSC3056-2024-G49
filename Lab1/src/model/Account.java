@@ -3,61 +3,52 @@ package model;
 import java.util.Date;
 
 public class Account {
-	String account_number;
-	String username_of_account_holder;
-	String account_type; 
-	Date account_opening_date;
+	String accountNumber;
+	String usernameOfAccountHolder;
+	String accountType; 
+	Date accountOpeningDate;
 	
-	
-	public String getAccount_number() {
-		return account_number;
+	public String getAccountNumber() {
+		return accountNumber;
 	}
 	
-	
-	public void setAccount_number(String account_number) {
-		this.account_number = account_number;
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 	
-	
-	public String getUsername_of_account_holder() {
-		return username_of_account_holder;
+	public String getUsernameOfAccountHolder() {
+		return usernameOfAccountHolder;
 	}
 	
-	
-	public void setUsername_of_account_holder(String username_of_account_holder) {
-		this.username_of_account_holder = username_of_account_holder;
+	public void setUsernameOfAccountHolder(String usernameOfAccountHolder) {
+		this.usernameOfAccountHolder = usernameOfAccountHolder;
 	}
 	
-	
-	public String getAccount_type() {
-		return account_type;
+	public String getAccountType() {
+		return accountType;
 	}
 	
-	
-	public void setAccount_type(String account_type) {
-		this.account_type = account_type;
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
 	
-	
-	public Date getAccount_opening_date() {
-		return account_opening_date;
+	public Date getAccountOpeningDate() {
+		return accountOpeningDate;
 	}
 	
-	
-	public void setAccount_opening_date(Date account_opening_date) {
-		this.account_opening_date = account_opening_date;
+	public void setAccountOpeningDate(Date accountOpeningDate) {
+		this.accountOpeningDate = accountOpeningDate;
 	}
 
-
-	public Account(String account_number, String username_of_account_holder, String account_type,
-			Date account_opening_date) {
+	public Account(String accountNumber, String usernameOfAccountHolder, String accountType, Date accountOpeningDate) {
 		
-			super();
-			this.account_number = account_number;
-			this.username_of_account_holder = username_of_account_holder;
-			this.account_type = account_type;
-			this.account_opening_date = account_opening_date;
+		super();
+		this.accountNumber = accountNumber;
+		this.usernameOfAccountHolder = usernameOfAccountHolder;
+		this.accountType = accountType;
+		this.accountOpeningDate = accountOpeningDate;
 	}
+	
 	
 	
 	
