@@ -61,7 +61,7 @@ public class User {
     public User(String username, String password, String firstName, String lastName, String mobileNumber) {
     	super();
 		this.username = username;
-		//this.password = password; 3.3.7 Injecting intentional defect into SUT
+		this.password = password; 
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.mobileNumber = mobileNumber;
