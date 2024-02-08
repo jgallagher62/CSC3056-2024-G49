@@ -6,7 +6,7 @@ import utils.TestUtils;
 public class UserTest {
 
 
-	    public static void main(String[] args) {
+	public static void main(String[] args) {
 	    	testUserConstructor();
 	    }
 
@@ -27,7 +27,7 @@ public class UserTest {
 		
 		System.out.println("Starting the assertions of the test method: testUserConstructor");
 		
-		if(testUser.getUsername() == testUsername)
+		if(testUser.getUsername() != testUsername)
 			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TC1-getUsername-Passed" + TestUtils.TEXT_COLOR_RESET);
 		else
 			System.out.println(TestUtils.TEXT_COLOR_RED + "TC1-getUsername-FAILED" + TestUtils.TEXT_COLOR_RESET);
@@ -57,4 +57,6 @@ public class UserTest {
 		else
 			System.out.println(TestUtils.TEXT_COLOR_RED + "TC5-getMobileNumber-FAILED" + TestUtils.TEXT_COLOR_RESET);
 	}
+	
+	
 }	
