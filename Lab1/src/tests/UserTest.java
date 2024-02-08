@@ -57,10 +57,15 @@ public class UserTest {
 			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TC5-getMobileNumber-Passed" + TestUtils.TEXT_COLOR_RESET);
 		else
 			System.out.println(TestUtils.TEXT_COLOR_RED + "TC5-getMobileNumber-FAILED" + TestUtils.TEXT_COLOR_RESET);
-	
 		
+		
+		assert testUser.getUsername() == testUsername;
+		assert testUser.getPassword() == testPassword;
+		assert testUser.getFirstName() == testFirstName;
 		assert testUser.getLastName() == testLastName;
 		assert testUser.getMobileNumber() == testMobileNumber;
+		
+		System.out.println("All Java assertions in the test suite passed(none have failed)");
 	
 	}
 	
