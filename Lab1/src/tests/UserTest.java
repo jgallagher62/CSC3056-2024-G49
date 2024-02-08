@@ -59,7 +59,6 @@ public class UserTest {
 			System.out.println(TestUtils.TEXT_COLOR_RED + "TC5-getMobileNumber-FAILED" + TestUtils.TEXT_COLOR_RESET);
 		
 
-		assert 1==2;
 		assert testUser.getUsername() == testUsername;
 		assert testUser.getPassword() == testPassword;
 		assert testUser.getFirstName() == testFirstName;
