@@ -33,7 +33,6 @@ public class UserTest {
 		else
 			System.out.println(TestUtils.TEXT_COLOR_RED + "TC1-getUsername-FAILED" + TestUtils.TEXT_COLOR_RESET);
 		
-		
 		if(testUser.getPassword()== testPassword)
 			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TC2-getPassword_Passed" + TestUtils.TEXT_COLOR_RESET);
 		else
@@ -58,15 +57,15 @@ public class UserTest {
 			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TC5-getMobileNumber-Passed" + TestUtils.TEXT_COLOR_RESET);
 		else
 			System.out.println(TestUtils.TEXT_COLOR_RED + "TC5-getMobileNumber-FAILED" + TestUtils.TEXT_COLOR_RESET);
+	
 		
-		
-		assert testUser.getUsername()== testUsername;	
-		assert testUser.getPassword() == testPassword;
-		assert testUser.getFirstName() == testFirstName;
-		
-		
-		System.out.println("All Java assertions in the test suite passed (none have failed)");
+		assert testUser.getLastName() == testLastName;
+		assert testUser.getMobileNumber() == testMobileNumber;
+	
 	}
+	
+	
+	
 	
 	
 }	
