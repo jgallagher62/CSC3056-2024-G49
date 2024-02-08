@@ -60,6 +60,7 @@ public class UserTest {
 		
 		
 		assert testUser.getUsername() == testUsername;
+		assert 1==2;
 		assert testUser.getPassword() == testPassword;
 		assert testUser.getFirstName() == testFirstName;
 		assert testUser.getLastName() == testLastName;
