@@ -99,8 +99,12 @@ public class SimpleBankingApp {
 	        }
 	    }
 	    return balance;
-		
 	}
+	
+	//we originally had 'if (transaction.getAccountNumber().equals(account_number)) {' 
+	//but different online sources said to use .equals as that is more accurate as it compares
+	//the actual value
+
 	
 	
 	//////////////////////////////////////////////////////
