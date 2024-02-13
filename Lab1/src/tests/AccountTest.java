@@ -17,6 +17,7 @@ public class AccountTest {
 		String testAccountNumber = "123456";
 		String testUsernameOfAccountHolder = "Laura";
 		String testAccountType = "Savings";
+		//reference = chat gpt for working out the date field
 		Date testAccountOpeningDate = new Date(2017, 2, 1);
 		
 		Account testAccount = new Account (testAccountNumber, testUsernameOfAccountHolder, testAccountType, testAccountOpeningDate);
@@ -68,6 +69,7 @@ public class AccountTest {
 	    String newAccountNumber = "654321";
 	    String newUsername = "Jennifer";
 	    String newAccountType = "Current";
+	    //reference = chat gpt for working out the date field
 	    Date newOpeningDate = new Date(2022, 1, 1);
 
 	    testAccount.setAccountNumber(newAccountNumber);
