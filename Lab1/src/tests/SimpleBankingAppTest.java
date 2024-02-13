@@ -68,22 +68,36 @@ public class SimpleBankingAppTest {
 	}
 
 	// this test method (test case) verifies if the Withdraw feature works properly
-	/* TODO
+	
 	public static void testWithdrawals() {
+		
 		// 1-Setup phase
+		double balanceBeforeWD = SimpleBankingApp.getBalance("5495-1234"); 
+		double withdrawalAmount = 47.66;
 		
 		// 2-Exercise phase
+		SimpleBankingApp.addTransaction("5495-1234", -withdrawalAmount);
+		double balanceAfterWD = SimpleBankingApp.getBalance("5495-1234");
 		
 		// 3-verify
+		assert balanceBeforeWD - withdrawalAmount == balanceAfterWD;
+		if (balanceBeforeWD - withdrawalAmount == balanceAfterWD)
+			System.out.println(TestUtils.TEXT_COLOR_GREEN + "testWithdrawals: TC1 passed"+ TestUtils.TEXT_COLOR_RESET);
+		else {
+			System.out.println(TestUtils.TEXT_COLOR_RED + "testWithdrawals: TC1 FAILED XXX: balanceBeforeWD + withdrawalAmount != balanceAfterWD");
+			System.out.format("testWithdrawals: balanceBeforeWD = %.2f ; withdrawalAmount = %.2f ; balanceAfterWD = %.2f %s\n", 
+					balanceBeforeWD , withdrawalAmount , balanceAfterWD, TestUtils.TEXT_COLOR_RESET);
+		}
 		
 		// 4-tear-down
+		SimpleBankingApp.addTransaction("5495-1234", withdrawalAmount);
 	}
-	*/
 	
 	public static void main(String[] args) {
 		// we need to call our test cases (methods)
 		testLoadData();
 		testDeposits();
+		testWithdrawals();
 		// testWithdrawals(); -- uncomment this call, when you have developed the test method (test case)
 	}
 
