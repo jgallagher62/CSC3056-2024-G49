@@ -27,7 +27,7 @@ public class DataUtilitiesTest extends DataUtilities {
 	}
 
 	@Test
-	public void testValidDataAndColumnTotal() {
+	public void testValidDataAndColumnColumnTotal() {
 		assertEquals("Wrong sum returned. It should be 5.0",
 				5.0, DataUtilities.calculateColumnTotal(values2D, 0), 0.0000001d);
 	}
