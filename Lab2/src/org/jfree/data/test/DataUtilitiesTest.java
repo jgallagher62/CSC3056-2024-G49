@@ -32,6 +32,7 @@ public class DataUtilitiesTest extends DataUtilities {
 				5.0, DataUtilities.calculateColumnTotal(values2D, 0), 0.0000001d);
 	}
 	
+	@Test
 	public void testNullDataColumnTotal(){
 		try {
 			DataUtilities.calculateColumnTotal(null, 0);
