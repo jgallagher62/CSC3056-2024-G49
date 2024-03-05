@@ -42,5 +42,85 @@ public class DataUtilitiesTest extends DataUtilities {
 			assertTrue("Incorrect exception type thrown", e.getClass().equals(IllegalArgumentException.class));
 		}
 	}
+	
+	// 3.1.2 calculateRowTotal (Values2D data, int row) //
+
+	// Test Case 1 //
+	@Test
+	public void testValidMatrixValidRow() {
+	    DefaultKeyedValues2D testObject = new DefaultKeyedValues2D();
+	    testObject.addValue(2, 0, 0);
+	    testObject.addValue(4, 0, 1);
+	    testObject.addValue(6, 0, 2);
+	    testObject.addValue(5, 1, 0);
+	    testObject.addValue(2, 1, 1);
+	    testObject.addValue(7, 1, 2);
+	    
+	    assertEquals("Incorrect output", 
+	            12, DataUtilities.calculateRowTotal(testObject, 0), 0.0000001d);
+	}
+
+	// Test Case 2 //
+	@Test
+	public void testValidMatrixInvalidRow() {
+	    try {
+	        DefaultKeyedValues2D testObject = new DefaultKeyedValues2D();
+	        testObject.addValue(2, 0, 0);
+	        testObject.addValue(4, 0, 1);
+	        testObject.addValue(6, 0, 2);
+	        testObject.addValue(5, 1, 0);
+	        testObject.addValue(2, 1, 1);
+	        testObject.addValue(7, 1, 2);
+	        
+	        DataUtilities.calculateRowTotal(testObject, -1);
+	        fail("Expected Out Of Bounds Exception");
+	    } catch (IndexOutOfBoundsException e) {
+	    }
+	}
+
+	// Test Case 3 //
+	@Test
+	public void testInvalidMatrixValidRow() {
+	    try {
+	        DataUtilities.calculateRowTotal(null, 1);
+	    } catch (NullPointerException e) {
+	        fail("The Data object is null");
+	    }
+	    fail("Expected Illegal Argument Exception");
+	}
+
+	// Test Case 4 //
+	@Test
+	public void testInvalidMatrixInvalidRow() {
+
+	    DefaultKeyedValues2D testObject = new DefaultKeyedValues2D();
+	    assertEquals("Incorrect output", 0, DataUtilities.calculateRowTotal(testObject, -3), 0.0000001d);
+	}
+
+	// 3.1.4 createNumberArray2D(double[][] data) //
+
+	// Test Case 1 //
+	@Test
+	public void testValidData() {
+	    double[][] validData = {{2.0, 4.0}, {5.0, 7.0}};
+	    Number[][] expectedData = {{2.0, 4.0}, {5.0, 7.0}};
+	    Number[][] result = DataUtilities.createNumberArray2D(validData);
+	    assertEquals("Valid data input is", expectedData, result);
+	}
+
+	// Test Case 2 //
+	@Test(expected = IllegalArgumentException.class)
+	public void testInvalidData() {
+	    double[][] invalidData = {{Double.NaN, Double.POSITIVE_INFINITY}, {1.0, -1.0}};
+	    DataUtilities.createNumberArray2D(invalidData);
+	}
+
+	// Test Case 3 //
+	@Test(expected = IllegalArgumentException.class)
+	public void testEmptyData() {
+	    double[][] emptyData = {};
+	    DataUtilities.createNumberArray2D(emptyData);
+	}
+
 
 }
