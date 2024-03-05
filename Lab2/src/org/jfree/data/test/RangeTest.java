@@ -28,6 +28,4 @@ public class RangeTest {
 						0, rangeObjectUnderTest.getCentralValue(), 0.000000001d);
 	}
 }
-//hey this is jen
-	//this is a test
-//this is laura 
+
