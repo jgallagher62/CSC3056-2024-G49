@@ -28,5 +28,3 @@ public class RangeTest2 {
 						0, rangeObjectUnderTest.getCentralValue(), 0.000000001d);
 	}
 }
-
-//this is a test jen
