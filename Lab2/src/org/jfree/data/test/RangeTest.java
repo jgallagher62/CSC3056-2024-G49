@@ -132,5 +132,69 @@ public class RangeTest {
 	}
 
 	
+	//3.2.2
+	
+	//test case 11 to test the get upper value of ranges 2 to 8
+	@Test
+	public void testPositiveLowerAndUpperBoundGetUpperSucceed_TC11() {
+		rangeObjectUnderTest = new Range(2.0, 8.0);
+		assertEquals("Upper bound should be 8.0", 8.0, rangeObjectUnderTest.getUpperBound(), 0.0000001d);
+	}
+
+		
+	//test case 12 to test the get upper value of ranges -4.0 to 4.0
+	@Test
+	public void testNegativeLowerAndPositiveUpperBoundGetUpperSucceed_TC12() {
+		rangeObjectUnderTest = new Range(-4.0, 4.0);
+	    assertEquals("Upper bound should be 4.0", 4.0, rangeObjectUnderTest.getUpperBound(), 0.000001);
+	}
+		
+		
+	//test case 13 to test the get upper value of ranges -6.0 to 0
+	@Test
+	public void testNegativeLowerAnd0UpperGetUpperSucceed_TC13() {
+		rangeObjectUnderTest = new Range(-6.0, 0);
+	    assertEquals("Upper bound should be 0", 0, rangeObjectUnderTest.getUpperBound(), 0.000001);
+	}
+		
+		
+	//test case 14 to test the get upper value of ranges -8.0 to -2.0
+	@Test
+	public void testNegativeLowerAndUpperGetUpperSucceed_TC14() {
+		rangeObjectUnderTest = new Range(-8.0, -2.0);
+	    assertEquals("Upper bound should be -2.0", -2.0, rangeObjectUnderTest.getUpperBound(), 0.000001);
+	}
+		
+		
+		
+		
+	//3.2.4
+		
+		
+	//test case 15 to test the central value of 6 and 12
+	@Test
+	public void testCentralValueOnPositiveValues_TC15() {
+		rangeObjectUnderTest = new Range(6.0, 12.0);
+		assertEquals("The central value of 6.0 and 12.0 should be 9.0",
+		9.0, rangeObjectUnderTest.getCentralValue(), 0.000000001d);
+	}
+		
+	//test case 16 to test the central value on -4.0 and 4.0
+	@Test
+	public void testCentralValueOnNegLowerValues_TC16() {
+		rangeObjectUnderTest = new Range(-4.0, 4.0);
+		assertEquals("The central value of -4.0 and 4.0 should be 0.0",
+		0.0, rangeObjectUnderTest.getCentralValue(), 0.000000001d);
+	}
+			
+
+	//test case 16 to test the central value on -4.0 and 4.0
+	@Test
+	public void testCentralValueOnNegLowerValueZeroUpper_TC17() {
+		rangeObjectUnderTest = new Range(-6.0, 0.0);
+		assertEquals("The central value of -6.0 and 0.0 should be -3.0",
+		-3.0, rangeObjectUnderTest.getCentralValue(), 0.000000001d);
+	}
+	
 }
 

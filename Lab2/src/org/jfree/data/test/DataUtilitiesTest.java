@@ -122,5 +122,122 @@ public class DataUtilitiesTest extends DataUtilities {
 	    DataUtilities.createNumberArray2D(emptyData);
 	}
 
+	
+	
+    //3.1.1
+    
+    
+    // Test case 1 for valid data matrix and valid column number
+    @Test
+    public void testValidDataAndValidColumnSucceeds_TC1() {
+        DefaultKeyedValues2D testObject = new DefaultKeyedValues2D();
+        testObject.addValue(2, 0, 0);
+        testObject.addValue(8, 0, 1);
+        testObject.addValue(9, 0, 2);
+        testObject.addValue(4, 1, 0);
+        testObject.addValue(8, 1, 1);
+        testObject.addValue(3, 1, 2);
+        
+        assertEquals("Incorrect output", 6.0, DataUtilities.calculateColumnTotal(testObject, 0), 0.0000001d); 
+    }
+    
+    // Test case 2 for valid data matrix and invalid column number
+    // valid datas and 3 (# not minus 1)
+    @Test
+    public void testValidDataAndInvalidColumnCatchesException_TC2() {
+        DefaultKeyedValues2D testObject = new DefaultKeyedValues2D();
+        testObject.addValue(2, 0, 0);
+        testObject.addValue(8, 0, 1);
+        testObject.addValue(9, 0, 2);
+        testObject.addValue(4, 1, 0);
+        testObject.addValue(8, 1, 1);
+        testObject.addValue(3, 1, 2);
+        
+        try {
+            DataUtilities.calculateColumnTotal(testObject, 3);
+            fail("No exception thrown. The expected outcome was: a thrown exception of type: IllegalArgumentException");
+        } catch (Exception e) {
+            assertTrue("Incorrect exception type thrown", e.getClass().equals(IllegalArgumentException.class));
+        }
+    }
+    
+    
+    
+    
+    
+    // Test case 3 for invalid data matrix and valid column number
+    //null and 0
+    @Test
+    public void testInvalidNullDataAndValidColumnCatchesException_TC3() {
+    	try {
+            DataUtilities.calculateColumnTotal(null, 0);
+            fail("No exception thrown. The expected outcome was: a thrown exception of type: IllegalArgumentException");
+        } catch (Exception e) {
+            assertTrue("Incorrect exception type thrown", e.getClass().equals(IllegalArgumentException.class));
+        }
+    }
+    
+    // Test case 4 for invalid data matrix and valid column number
+    //[] and 1
+    @Test
+    public void testInvalidDataAndValidColumnReturns0_TC4() {
+        Values2D emptyMatrix = new DefaultKeyedValues2D();
+        assertEquals("Expected 0 for an invalid data matrix and column number", 0.0, DataUtilities.calculateColumnTotal(emptyMatrix, 1), 0.000001);
+    
+    }
+    
+    // Test case 5 for invalid data matrix and invalid column number
+    //[] and -1
+    public void testInvalidDataAndInvalidColumnCatchesException_TC5() {
+    	Values2D emptyMatrix = null;
+    	try {
+            DataUtilities.calculateColumnTotal(emptyMatrix, -1);
+            fail("No exception thrown. The expected outcome was: a thrown exception of type: IllegalArgumentException");
+        } catch (Exception e) {
+            assertTrue("Incorrect exception type thrown", e.getClass().equals(IllegalArgumentException.class));
+        }
+    
+    }
+    
+    
+    
+    
+    //3.1.3 create number array
+    
+    @Test
+    public void testValidDoubleArrayDataInputs_TC6() {
+        double[] input = {1.0, 3.0, 6.0};
+        Number[] expected = {1.0, 3.0, 6.0}; // Change to Double objects
+        assertArrayEquals(expected, DataUtilities.createNumberArray(input));
+    }
+  
+    
+    @Test
+    public void testInvalidDoubleArrayDataInputs_TC7() {
+    	try {
+            DataUtilities.createNumberArray(null);
+            fail("No exception thrown. The expected outcome was: a thrown exception of type: IllegalArgumentException");
+        } catch (Exception e) {
+            assertTrue("Incorrect exception type thrown", e.getClass().equals(IllegalArgumentException.class));
+        }
+    }
+    
+    
+    @Test
+    public void testInvalidDoubleArrayDataInputs_TC8() {
+    	double[] input = null;
+    	try {
+            DataUtilities.createNumberArray(input);
+            fail("No exception thrown. The expected outcome was: a thrown exception of type: IllegalArgumentException");
+        } catch (Exception e) {
+            assertTrue("Incorrect exception type thrown", e.getClass().equals(IllegalArgumentException.class));
+        }
+    }
+    
+    
+    
+    //3.3.5
+  
+    }
 
-}
+
