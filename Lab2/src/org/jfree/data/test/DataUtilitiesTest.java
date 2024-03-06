@@ -3,7 +3,11 @@ package org.jfree.data.test;
 import static org.junit.Assert.*;
 
 import org.jfree.data.DataUtilities;
+import org.jfree.data.DefaultKeyedValue;
+import org.jfree.data.DefaultKeyedValues;
 import org.jfree.data.DefaultKeyedValues2D;
+import org.jfree.data.KeyedValues;
+import org.jfree.data.Values;
 import org.jfree.data.Values2D;
 import org.junit.After;
 import org.junit.Before;
@@ -12,6 +16,7 @@ import org.junit.Test;
 public class DataUtilitiesTest extends DataUtilities {
 	
 	private Values2D values2D;
+	private Values values;
 
 	@Before
 	public void setUp() throws Exception {
@@ -237,7 +242,35 @@ public class DataUtilitiesTest extends DataUtilities {
     
     
     //3.3.5
-  
+    
+    
+    @Test
+    public void testCumulativePercentagesWithKey_TC18(){
+    	DefaultKeyedValues dataValues = new DefaultKeyedValues();
+		values = dataValues;
+		dataValues.addValue("0", 5.0);
+		dataValues.addValue("1", 9.0);
+		dataValues.addValue("2", 2.0);
+		
+		KeyedValues result = DataUtilities.getCumulativePercentages(dataValues);
+
+	    // Validate the calculated cumulative percentages
+	    assertEquals("Cumulative percentage for key 0 should be 0.3125", 0.3125, result.getValue("0").doubleValue(), 0.000001d);
+	    assertEquals("Cumulative percentage for key 1 should be 0.875", 0.875, result.getValue("1").doubleValue(), 0.000001d);
+	    assertEquals("Cumulative percentage for key 2 should be 1.0", 1.0, result.getValue("2").doubleValue(), 0.000001d);
+
     }
+    
+    @Test
+    public void testCumulativePercentagesNullIllegal_TC19() {
+    	try {
+            DataUtilities.getCumulativePercentages(null);
+            fail("No exception thrown. The expected outcome was: a thrown exception of type: IllegalArgumentException");
+        } catch (Exception e) {
+            assertTrue("Incorrect exception type thrown", e.getClass().equals(IllegalArgumentException.class));
+        }
+    }
+    
+}
 
 
