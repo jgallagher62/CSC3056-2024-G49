@@ -2,6 +2,13 @@ package org.jfree.data;
 
 import static org.junit.Assert.*;
 
+import org.jfree.data.DataUtilities;
+import org.jfree.data.DefaultKeyedValue;
+import org.jfree.data.DefaultKeyedValues;
+import org.jfree.data.DefaultKeyedValues2D;
+import org.jfree.data.KeyedValues;
+import org.jfree.data.Values;
+import org.jfree.data.Values2D;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,22 +31,40 @@ public class DataUtilitiesTest extends DataUtilities {
 		values2D = null;
 	}
 
+	// White Box Testing 1 - updated original test code from Lab 2. 
 	@Test
 	public void testValidDataAndColumnColumnTotal() {
-		assertEquals("Wrong sum returned. It should be 5.0",
-				5.0, DataUtilities.calculateColumnTotal(values2D, 0), 0.0000001d);
+	    DefaultKeyedValues2D testValues = new DefaultKeyedValues2D();
+	    testValues.addValue(1, 0, 0);
+	    testValues.addValue(4, 1, 0);
+	    assertEquals("Wrong sum returned. It should be 5.0", 5.0, DataUtilities.calculateColumnTotal(testValues, 0), 
+	    		0.0000001d);
 	}
-	
+
+	// White Box Testing 2 - updated original test code from Lab 2. 
 	@Test
-	public void testNullDataColumnTotal(){
-		try {
-			DataUtilities.calculateColumnTotal(null, 0);
-			fail("No exception thrown. The expected outcome was: a thrown exception of type IllegalArgumentException");
-		}
-		catch(Exception e) {
-			assertTrue("Incorrect exception type thrown", e.getClass().equals(IllegalArgumentException.class));
-		}
+	public void testNullDataColumnTotal() {
+	    Values2D data = new DefaultKeyedValues2D(); 
+	    try {
+	        DataUtilities.calculateColumnTotal(data, 0);
+	        fail("No exception thrown. The expected outcome was: a thrown exception of type IllegalArgumentException");
+	    } catch (IllegalArgumentException e) {
+	        assertNotNull("Expected IllegalArgumentException was thrown", e);
+	    }
 	}
+
+
+	// White Box Testing 3 - Added a new test to check the behaviour when a null value is passed.  
+	@Test
+	public void testNullValueInColumnTotalWhiteBox() {
+	    DefaultKeyedValues2D testValues = new DefaultKeyedValues2D();
+	    testValues.addValue(1, 0, 0);
+	    testValues.addValue(null, 1, 0); // Adding a null value to cover the null branch
+	    assertEquals("Wrong sum returned. It should be 1.0", 1.0, DataUtilities.calculateColumnTotal(testValues, 0), 
+	    		0.0000001d);
+	}
+
+	
 	
 	// 3.1.2 calculateRowTotal (Values2D data, int row) //
 
@@ -95,6 +120,34 @@ public class DataUtilitiesTest extends DataUtilities {
 	    assertEquals("Incorrect output", 0, DataUtilities.calculateRowTotal(testObject, -3), 0.0000001d);
 	}
 
+	// White Box Testing 1 - Add new test to check the behaviour when a null value is in the row. 
+	
+	@Test
+	public void testNullValueInRowWhiteBox() {
+	    DefaultKeyedValues2D testObject = new DefaultKeyedValues2D();
+	    testObject.addValue(2, 0, 0);
+	    testObject.addValue(null, 0, 1); 
+	    testObject.addValue(6, 0, 2);
+	    
+	    assertEquals("Incorrect output", 
+	            8, DataUtilities.calculateRowTotal(testObject, 0), 0.0000001d);
+	}
+	
+	// White Box Testing 2 - Add new test to check the behaviour when a non-null value is in the row. 
+
+	@Test
+	public void testNonNullValuesInRowWhiteBox() {
+	    DefaultKeyedValues2D testObject = new DefaultKeyedValues2D();
+	    testObject.addValue(2, 0, 0);
+	    testObject.addValue(4, 0, 1);
+	    testObject.addValue(6, 0, 2);
+	    
+	    assertEquals("Incorrect output", 
+	            12, DataUtilities.calculateRowTotal(testObject, 0), 0.0000001d);
+	}
+
+	
+	
 	// 3.1.4 createNumberArray2D(double[][] data) //
 
 	// Test Case 1 //
@@ -118,6 +171,14 @@ public class DataUtilitiesTest extends DataUtilities {
 	public void testEmptyData() {
 	    double[][] emptyData = {};
 	    DataUtilities.createNumberArray2D(emptyData);
+	}
+	
+	// White Box Testing 1 - Add new test to check behaviour when the data passed is null. 
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testNullDataWhiteBox() {
+	    double[][] nullData = null;
+	    DataUtilities.createNumberArray2D(nullData);
 	}
 
 	
@@ -263,6 +324,41 @@ public class DataUtilitiesTest extends DataUtilities {
             assertTrue("Incorrect exception type thrown", e.getClass().equals(IllegalArgumentException.class));
         }
     }
+    
+    //White Box Testing 1 - Add new test case to check behaviour when provided with a null object. 
+    
+    @Test
+    public void testCumulativePercentagesWithNullValuesWhiteBox() {
+        DefaultKeyedValues dataValues = new DefaultKeyedValues();
+        dataValues.addValue("0", null);
+        dataValues.addValue("1", null);
+        dataValues.addValue("2", null);
+
+        KeyedValues result = DataUtilities.getCumulativePercentages(dataValues);
+
+        assertEquals("Cumulative percentage for key 0 should be NaN", Double.NaN, result.getValue("0").doubleValue(), 0.000001d);
+        assertEquals("Cumulative percentage for key 1 should be NaN", Double.NaN, result.getValue("1").doubleValue(), 0.000001d);
+        assertEquals("Cumulative percentage for key 2 should be NaN", Double.NaN, result.getValue("2").doubleValue(), 0.000001d);
+    }
+
+    //White Box Testing 2 - Add new test case to check behaviour when provided with a non-null object. 
+
+    @Test
+    public void testCumulativePercentagesWithNonNullValueWhiteBox() {
+        DefaultKeyedValues dataValues = new DefaultKeyedValues();
+        dataValues.addValue("0", 5.0); 
+        dataValues.addValue("1", null);
+        dataValues.addValue("2", null);
+
+        KeyedValues result = DataUtilities.getCumulativePercentages(dataValues);
+
+        assertEquals("Cumulative percentage for key 0 should be 1.0", 1.0, result.getValue("0").doubleValue(), 0.000001d);
+
+        assertEquals("Cumulative percentage for key 1 should be NaN", Double.NaN, result.getValue("1").doubleValue(), 0.000001d);
+        assertEquals("Cumulative percentage for key 2 should be NaN", Double.NaN, result.getValue("2").doubleValue(), 0.000001d);
+    }
+
+
     
 }
 
